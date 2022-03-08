@@ -1,0 +1,48 @@
+<div class="content">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="title">Todo güncelle</h5>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="todoUpdateForm">
+            <div class="mb-3">
+              <label for="title">Todo ismi</label>
+              <div class="form-group">
+                <input
+                  type="text"
+                  id="title"
+                  class="form-control"
+                  formControlName="title"
+                  placeholder="Todo ismi"
+                />
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="userId">User ID</label>
+              <div class="form-group">
+                <select class="form-select" formControlName="userId">
+                  <option value="" disabled>Choose user</option>
+                  <option *ngFor="let user of users" value={{user.id}}>{{user.name}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="completed">Tamamlanma Durumu</label>
+              <div class="form-group">
+                <select class="form-select" formControlName="completed">
+                  <option value="" disabled>Choose a completed status</option>
+                  <option [ngValue]="true">True</option>
+                  <option [ngValue]="false">False</option>
+                </select>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="card-footer">
+            <button class="btn btn-warning" routerLink="../../" (click)="update()">Güncelle</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

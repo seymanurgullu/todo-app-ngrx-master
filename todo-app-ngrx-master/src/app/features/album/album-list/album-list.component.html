@@ -1,0 +1,41 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">User ID</th>
+      <th scope="col">Title</th>
+      <th scope="col" class="text-center">Favorilere Ekle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      *ngFor="
+        let album of albums
+          | paginate
+            : {
+                itemsPerPage: pagingInfo.itemsPerPage,
+                currentPage: pagingInfo.currentPage
+              }
+      "
+    >
+      <th scope="row">{{ album.id }}</th>
+      <td>{{ album.userId }}</td>
+      <td>{{ album.title }}</td>
+      <td
+        class="text-center"
+        (click)="addToFavorite(album)"
+        style="cursor: pointer"
+      >
+        <a>
+          <i class="bi bi-heart-fill text-danger"></i>
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="text-center">
+  <pagination-controls
+    (pageChange)="pagingInfo.currentPage = $event"
+  ></pagination-controls>
+</div>

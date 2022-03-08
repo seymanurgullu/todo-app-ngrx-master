@@ -1,0 +1,57 @@
+<div *ngIf="loading == false; else loadingInfo">
+    <div>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="filterText"
+        placeholder="Search for users"
+      />
+    </div>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col" class="text-center"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="
+            let user of users
+              | userFilter: filterText
+              | paginate
+                : {
+                    itemsPerPage: pagingInfo.itemsPerPage,
+                    currentPage: pagingInfo.currentPage
+                  }
+          "
+        >
+          <th scope="row">{{ user.id }}</th>
+          <td>{{user.name}}</td>
+          <td class="text-center">
+            <a class="link-primary me-4" routerLink="/../users/update/{{ user.id }}">
+              <i class="bi bi-pen"></i>
+            </a>
+            <a class="link-danger" (click)="delete(user.id)">
+              <i class="bi bi-x-lg"></i>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="text-center">
+      <pagination-controls
+        (pageChange)="pagingInfo.currentPage = $event"
+      ></pagination-controls>
+    </div>
+  </div>
+  
+  <ng-template #loadingInfo>
+    <div class="text-center">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  </ng-template>
+  

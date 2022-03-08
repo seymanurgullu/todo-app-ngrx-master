@@ -1,0 +1,17 @@
+<div *ngIf="loading==false;else loadingInfo">
+    <div>
+      <input type="text" [(ngModel)]="filterText" class="form-control" placeholder="Search for users">
+    </div>
+    <div class="list-group">
+        <a *ngFor="let user of users | userFilter:filterText" class="list-group-item" routerLink="user-todos/{{user.id}}" routerLinkActive="active">{{ user.name }}</a>
+    </div>
+  </div>
+  
+  <ng-template #loadingInfo>
+      <div class="text-center">
+          <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+  </ng-template>
+    

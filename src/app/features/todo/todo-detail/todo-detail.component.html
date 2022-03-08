@@ -1,0 +1,29 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">User ID</th>
+      <th scope="col">Title</th>
+      <th scope="col" class="text-center">Completed</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">{{ todo.id }}</th>
+      <td>{{ todo.userId }}</td>
+      <td>{{ todo.title }}</td>
+      <td class="text-center">
+        <ng-template
+          [ngIf]="todo.completed"
+          [ngIfElse]="mines"
+          class="text-center"
+        >
+          <i class="bi bi-check-circle-fill text-success fs-5"></i>
+        </ng-template>
+        <ng-template #mines>
+          <i class="bi bi-dash-circle-fill text-danger fs-5"></i>
+        </ng-template>
+      </td>
+    </tr>
+  </tbody>
+</table>

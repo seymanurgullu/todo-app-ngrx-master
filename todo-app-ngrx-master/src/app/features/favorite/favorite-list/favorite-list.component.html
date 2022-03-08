@@ -1,0 +1,32 @@
+<table
+  class="table table-striped"
+  *ngIf="favorites.length > 0; else emptyFavorites"
+>
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">User ID</th>
+      <th scope="col">Title</th>
+      <th scope="col">Remove</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let favorite of favorites">
+      <th scope="row">{{ favorite.album.id }}</th>
+      <td>{{ favorite.album.userId }}</td>
+      <td>{{ favorite.album.title }}</td>
+      <td>
+        <button
+          class="btn btn-danger btn-sm"
+          (click)="removeFavorite(favorite.album)"
+        >
+          Favorilerden Çıkar
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<ng-template #emptyFavorites>
+  <h3>Favorilerinizde albüm bulunmuyor.</h3>
+</ng-template>
